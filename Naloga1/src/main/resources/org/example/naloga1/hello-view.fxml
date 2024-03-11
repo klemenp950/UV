@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.input.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.naloga1.HelloController">
+   <bottom>
+      <Label fx:id="status" BorderPane.alignment="BOTTOM_LEFT" />
+   </bottom>
+   <top>
+      <BorderPane prefHeight="37.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <top>
+            <MenuBar BorderPane.alignment="CENTER">
+              <menus>
+                <Menu mnemonicParsing="false" text="_Datoteka">
+                  <items>
+                    <MenuItem fx:id="odpri" mnemonicParsing="false" onAction="#odpriSB" text="Odpri">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator>
+                        </MenuItem>
+                        <MenuItem fx:id="pobrisi" mnemonicParsing="false" onAction="#pobrisiSB" text="Pobriši">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="C" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator>
+                        </MenuItem>
+                        <MenuItem fx:id="izhod" mnemonicParsing="false" onAction="#izhodSB" text="Izhod">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="Q" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator>
+                        </MenuItem>
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="_Uredi">
+                     <items>
+                        <CheckMenuItem fx:id="imeStatus" mnemonicParsing="false" onAction="#imeStatusSB" text="Ime" />
+                        <CheckMenuItem fx:id="priimekStatus" mnemonicParsing="false" onAction="#priimekStatusSB" text="Priimek" />
+                        <CheckMenuItem fx:id="drzavaStatus" mnemonicParsing="false" onAction="#drzavaStatusSB" text="Država" />
+                     </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="_Pogled">
+                  <items>
+                    <MenuItem fx:id="izpisiVse" mnemonicParsing="false" onAction="#izpisiVseSB" text="Izpisi vse" />
+                  </items>
+                </Menu>
+                  <Menu mnemonicParsing="false" text="P_omoč">
+                    <items>
+                      <MenuItem fx:id="oProgramu" mnemonicParsing="false" text="O programu" />
+                    </items>
+                  </Menu>
+              </menus>
+            </MenuBar>
+         </top>
+         <bottom>
+            <ToolBar prefHeight="40.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+              <items>
+                <Button fx:id="odpriButton" mnemonicParsing="false" onAction="#odpriSB" text="Odpri" />
+                  <Button fx:id="pobrisiButton" mnemonicParsing="false" onAction="#pobrisiSB" text="Pobriši" />
+                  <Button fx:id="izhodButton" mnemonicParsing="false" onAction="#izhodSB" text="Izhod" />
+                  <Button fx:id="izpisiVseButton" mnemonicParsing="false" onAction="#izpisiVseSB" text="Izpiši vse" />
+              </items>
+            </ToolBar>
+         </bottom>
+      </BorderPane>
+   </top>
+   <right>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextArea layoutX="10.0" layoutY="4.0" prefHeight="316.0" prefWidth="178.0" />
+         </children>
+      </Pane>
+   </right>
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="232.0" minWidth="10.0" prefWidth="87.19999999999999" />
+          <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="330.6" minWidth="10.0" prefWidth="313.6" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Ime" />
+            <Label text="Priimek" GridPane.rowIndex="1" />
+            <Label text="Država" GridPane.rowIndex="2" />
+            <Label text="Akcija" GridPane.rowIndex="3" />
+            <Label text="Oseba" GridPane.rowIndex="4" />
+            <Label text="Sporočilo" GridPane.rowIndex="7" />
+            <Label GridPane.rowIndex="5" />
+            <TextField fx:id="imeTextInput" disable="true" GridPane.columnIndex="1" />
+            <TextField fx:id="priimekTextField" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="drzavaTextField" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <RadioButton fx:id="dodajRadioButton" mnemonicParsing="false" prefHeight="18.0" prefWidth="72.0" text="Dodaj">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="akcija" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="odstraniPrvegaRadiobutton" mnemonicParsing="false" prefHeight="18.0" prefWidth="114.0" text="Odstrani prvega" toggleGroup="$akcija" />
+                  <RadioButton fx:id="odstraniIzbranegaradioButton" mnemonicParsing="false" text="Odstrani izbranega" toggleGroup="$akcija" />
+               </children>
+            </HBox>
+             <ComboBox fx:id="comboBox" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Klemen,Parkelj,Slovenija" />
+                    </FXCollections>
+                </items>
+             </ComboBox>
+            <CheckBox fx:id="dvojnikiDovoljeni" mnemonicParsing="false" prefHeight="18.0" prefWidth="127.0" text="Dvojniki dovoljeni" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label fx:id="sporocilo" text="  " GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Spinner fx:id="spinner" max="20" maxWidth="1.7976931348623157E308" min="0" onInputMethodTextChanged="#spinnerSB" onKeyPressed="#spinnerSB" onKeyReleased="#spinnerSB" onKeyTyped="#spinnerSB" onMouseClicked="#spinnerSB" onScroll="#spinnerSB" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+               <children>
+                  <Button fx:id="izvediAkcijoButton" alignment="CENTER" contentDisplay="CENTER" layoutX="116.0" layoutY="6.0" mnemonicParsing="false" onAction="#izvediAkcijo" text="Izvedi akcijo" />
+               </children>
+            </Pane>
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>

@@ -7,8 +7,17 @@
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.HelloController">
    <top>
       <BorderPane BorderPane.alignment="CENTER">
-         <top>
-            <MenuBar BorderPane.alignment="CENTER">
+         <bottom>
+            <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <items>
+                <Button mnemonicParsing="false" onAction="#odpri" text="Odpri" />
+                  <Button layoutX="10.0" layoutY="12.0" mnemonicParsing="false" onAction="#zapri" text="Izhod" />
+                  <Button layoutX="60.0" layoutY="12.0" mnemonicParsing="false" onAction="#avtorSB" text="O avtorju" />
+              </items>
+            </ToolBar>
+         </bottom>
+         <center>
+            <MenuBar prefWidth="600.0" BorderPane.alignment="CENTER">
               <menus>
                 <Menu mnemonicParsing="false" text="_Datoteka">
                   <items>
@@ -36,16 +45,7 @@
                 </Menu>
               </menus>
             </MenuBar>
-         </top>
-         <bottom>
-            <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-              <items>
-                <Button mnemonicParsing="false" onAction="#odpri" text="Odpri" />
-                  <Button layoutX="10.0" layoutY="12.0" mnemonicParsing="false" onAction="#zapri" text="Izhod" />
-                  <Button layoutX="60.0" layoutY="12.0" mnemonicParsing="false" onAction="#avtorSB" text="O avtorju" />
-              </items>
-            </ToolBar>
-         </bottom>
+         </center>
       </BorderPane>
    </top>
    <bottom>
@@ -82,7 +82,7 @@
                   <RadioButton mnemonicParsing="false" selected="true" text="Brez enote" toggleGroup="$enota" />
                </children>
             </HBox>
-            <Button onAction="#pretvoriSB" fx:id="pretvori" mnemonicParsing="false" text="Pretvori" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Button fx:id="pretvori" mnemonicParsing="false" onAction="#pretvoriSB" text="Pretvori" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
    </center>
