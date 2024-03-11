@@ -1,5 +1,6 @@
 package org.example.naloga1;
 
+import javafx.application.HostServices;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,6 +11,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 
 import java.io.File;
+
 
 public class HelloController {
     public Label status;
@@ -41,6 +43,8 @@ public class HelloController {
     private Label welcomeText;
 
     public File datoteka;
+    private Hyperlink hyperlink = new Hyperlink("https://github.com/klemenp950/UV/blob/main/Naloga1/Navodila.md");
+    private HostServices hostServices;
 
     @FXML
     protected void onHelloButtonClick() {
