@@ -36,6 +36,7 @@ public class HelloController {
     public CheckBox dvojnikiDovoljeni;
     public MenuItem odpri;
     public Spinner Kroznicek;
+    public TextArea polje;
     @FXML
     private Label welcomeText;
 
@@ -85,10 +86,17 @@ public class HelloController {
     }
 
     public void izpisiVseSB(ActionEvent actionEvent) {
+        StringBuilder besedilo = new StringBuilder();
+        for (int i = 0; i < comboBox.getItems().size(); i++) {
+            besedilo.append(comboBox.getItems().get(i).toString() + "\n");
+        }
+        polje.setText(besedilo.toString());
     }
 
     public void pobrisiSB(ActionEvent actionEvent) {
         status.setText("");
+        sporocilo.setText("");
+        polje.setText("");
     }
 
     public void izhodSB(ActionEvent actionEvent) {
