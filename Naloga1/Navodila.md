@@ -2,9 +2,9 @@
 
 Z integriranim razvojnim okoljem IntelliJ IDEA in generatorjem vmesnikov Scene Builder realizirajte grafični uporabniški vmesnik v grafičnem okolju JavaFX, ki temelji na glavnem oknu (Stage). Glavno okno vsebuje naslednje komponente:
 
--vrstični meni (MenuBar) z možnostmi Datoteka, Uredi, Pogled in Pomoč (ki so kaskadni gumbi, katerim sledijo izvlečni meniji (Menu)),
--orodno vrstico (ToolBar),
--delovno področje glavnega okna, ki je nek vsebovalnik, lahko je sidrni vsebovalnik (AnchorPane), ki vsebuje več podob, naštetih spodaj, in
+-vrstični meni (MenuBar) z možnostmi Datoteka, Uredi, Pogled in Pomoč (ki so kaskadni gumbi, katerim sledijo izvlečni meniji (Menu)),  
+-orodno vrstico (ToolBar),  
+-delovno področje glavnega okna, ki je nek vsebovalnik, lahko je sidrni vsebovalnik (AnchorPane), ki vsebuje več podob, naštetih spodaj, in  
 -statusno vrstico (Label).
 
 Delovno področje glavnega okna vsebuje naslednje podobe:
