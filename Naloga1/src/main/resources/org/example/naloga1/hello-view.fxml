@@ -69,7 +69,7 @@
    <right>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TextArea fx:id="polje" layoutX="10.0" layoutY="4.0" prefHeight="316.0" prefWidth="178.0" />
+            <TextArea fx:id="polje" editable="false" layoutX="10.0" layoutY="4.0" prefHeight="316.0" prefWidth="178.0" />
          </children>
       </Pane>
    </right>

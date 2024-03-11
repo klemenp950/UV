@@ -11,6 +11,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 
 import java.io.File;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class HelloController {
@@ -55,36 +57,36 @@ public class HelloController {
         FileChooser fs = new FileChooser();
         datoteka = fs.showOpenDialog(null);
         if (datoteka!=null){
-            status.setText("Izbrali ste datoteko: " + datoteka.getName());
+            izpisStatus("Izbrali ste datoteko: " + datoteka.getName());
         }
     }
 
     public void imeStatusSB(ActionEvent actionEvent) {
         if(imeStatus.isSelected()){
-            status.setText("Ime je izbrano");
+            izpisStatus("Ime je izbrano");
             imeTextInput.setDisable(false);
         } else {
-            status.setText("Ime ni izbrano");
+            izpisStatus("Ime ni izbrano");
             imeTextInput.setDisable(true);
         }
     }
 
     public void priimekStatusSB(ActionEvent actionEvent) {
         if(priimekStatus.isSelected()){
-            status.setText("Priimek je izbran");
+            izpisStatus("Priimek je izbran");
             priimekTextField.setDisable(false);
         } else {
-            status.setText("Priimek ni izbran");
+            izpisStatus("Priimek ni izbran");
             priimekTextField.setDisable(true);
         }
     }
 
     public void drzavaStatusSB(ActionEvent actionEvent) {
         if(drzavaStatus.isSelected()){
-            status.setText("Država je izbrana");
+            izpisStatus("Država je izbrana");
             drzavaTextField.setDisable(false);
         } else {
-            status.setText("Država ni izbrana");
+            izpisStatus("Država ni izbrana");
             drzavaTextField.setDisable(true);
         }
     }
@@ -129,7 +131,7 @@ public class HelloController {
         } else if (odstraniIzbranegaradioButton.isSelected()) {
             if(comboBox.getValue() != null){
                 comboBox.getItems().remove(comboBox.getValue());
-                status.setText("Odstranjujem izbranega");
+                izpisStatus("Odstranjujem izbranega");
             }
             else
                 status.setText("izberite element.");
@@ -143,7 +145,7 @@ public class HelloController {
                     break;
                 }
             }
-            status.setText("Odstranjujem prvega");
+            izpisStatus("Odstranjujem prvega");
         } else {
             status.setText("Izberite akcijo");
         }
@@ -156,7 +158,8 @@ public class HelloController {
 
         comboBox.getItems().add(ime + "," + priimek + "," + drzava);
 
-        status.setText("Dodajam");
+        izpisStatus("Dodajam");
+
     }
 
     public void spinnerSB(Event keyEvent) {
@@ -171,5 +174,20 @@ public class HelloController {
         if(!obstaja){
             sporocilo.setText("Ni elementa");
         }
+    }
+    public void izpisStatus(String sporocilo) {
+        Platform.runLater(() -> {
+            status.setText(sporocilo);
+            Timer timer = new Timer();
+            int cas = 5000;
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    Platform.runLater(() -> {
+                        status.setText("");
+                    });
+                }
+            }, cas);
+        });
     }
 }
