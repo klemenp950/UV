@@ -1,4 +1,4 @@
-#Naloga 1
+# Naloga1
 
 Z integriranim razvojnim okoljem IntelliJ IDEA in generatorjem vmesnikov Scene Builder realizirajte grafični uporabniški vmesnik v grafičnem okolju JavaFX, ki temelji na glavnem oknu (Stage). Glavno okno vsebuje naslednje komponente:
 
