@@ -9,15 +9,15 @@ Z integriranim razvojnim okoljem IntelliJ IDEA in generatorjem vmesnikov Scene B
 
 Delovno področje glavnega okna vsebuje naslednje podobe:
 
--tri polja za vnos besedila (TextField), skupaj s pojasnilnim besedilom (Label)
--tri izključujoča stikala (RadioButton)
--ukazni gumb (Button),
--kombiniran izvlečni seznam (ComboBox),
--krožno polje (Spinner),
--stikalo (CheckBox), 
--besedilno območje (TextArea) in
--vrstico za sporočila (Label).
-Podčrtane črke v imenih možnosti so mnemoniki, ki jih morate tudi realizirati.
+-tri polja za vnos besedila (TextField), skupaj s pojasnilnim besedilom (Label)  
+-tri izključujoča stikala (RadioButton)  
+-ukazni gumb (Button),  
+-kombiniran izvlečni seznam (ComboBox),  
+-krožno polje (Spinner),  
+-stikalo (CheckBox),   
+-besedilno območje (TextArea) in  
+-vrstico za sporočila (Label).  
+Podčrtane črke v imenih možnosti so mnemoniki, ki jih morate tudi realizirati.  
 
 Meni Datoteka naj vsebuje elemente (MenuItem) Odpri (klic dialoga za izbiro datoteke (FileChooser)), Pobriši (pobriše vsebino vrstice za sporočila in statusne vrstice) in Izhod (konča program). Vsem opcijam menija Datoteka dodajte tudi ustrezne bližnjice (npr. Ctrl+O, Ctrl+C in Ctrl+Q). Meni Uredi naj vsebuje končne izbire Ime, Priimek in Drzava, ki so menijska stikala (CheckMenuItem).  Meni Pogled pa naj vsebuje končno izbiro Izpisi vse. Implementirajte tudi orodno vrstico (ToolBar), ki naj vsebuje vse končne izbire iz menijev Datoteka in Pogled. Vmesnik naj vsebuje tudi statusno vrstico, ki naj bo oznaka (Label), v katero se naj ob izbiri možnosti iz menijev Uredi in Pogled (ali iz orodne vrstice) zapiše opis izbrane opcije.
 
