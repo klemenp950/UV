@@ -130,7 +130,7 @@ public class HelloController {
 
         } else if (odstraniIzbranegaradioButton.isSelected()) {
             if(comboBox.getValue() != null){
-                comboBox.getItems().remove(comboBox.getValue());
+                comboBox.getItems().remove(comboBox.getSelectionModel().getSelectedIndex());
                 izpisStatus("Odstranjujem izbranega");
             }
             else
