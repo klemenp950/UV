@@ -2,40 +2,57 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.input.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.web.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.naloga2.HelloController">
    <top>
-      <VBox prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox BorderPane.alignment="CENTER">
          <children>
             <MenuBar>
               <menus>
-                <Menu mnemonicParsing="false" text="Datoteka">
+                <Menu mnemonicParsing="false" text="_Datoteka">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
+                    <MenuItem mnemonicParsing="false" onAction="#odpriButtonSB" text="Odpri">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#shraniButtonSB" text="Shrani">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#shraniKotSB" text="Shrani kot...">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                           </accelerator></MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#zapriSB" text="Zapri">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="Z" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Uredi">
+                <Menu mnemonicParsing="false" text="_Iskanje">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
+                    <MenuItem mnemonicParsing="false" text="Najdi" />
+                        <MenuItem mnemonicParsing="false" text="Najdi vse in zamenjaj" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Pomoč">
+                <Menu mnemonicParsing="false" text="_Pomoč">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
+                    <MenuItem mnemonicParsing="false" text="Avtor" />
                   </items>
                 </Menu>
               </menus>
             </MenuBar>
             <HBox prefWidth="200.0">
                <children>
-                  <Button mnemonicParsing="false" text="Odpri">
+                  <Button mnemonicParsing="false" onAction="#odpriButtonSB" text="Odpri">
                      <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" text="Shrani">
+                  <Button mnemonicParsing="false" onAction="#shraniButtonSB" text="Shrani">
                      <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
@@ -72,19 +89,19 @@
    <center>
       <Accordion BorderPane.alignment="CENTER">
         <panes>
-          <TitledPane animated="false" text="HTML ">
+          <TitledPane animated="false" onMouseClicked="#titlePaneHTMLSB" text="HTML ">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0">
+              <AnchorPane>
                      <children>
-                        <HTMLEditor htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" />
+                        <HTMLEditor fx:id="editor" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" prefHeight="288.0" prefWidth="638.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children></AnchorPane>
             </content>
           </TitledPane>
-          <TitledPane animated="false" text="TXT">
+          <TitledPane animated="false" onMouseClicked="#titlePaneTxtSB" text="TXT">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextArea prefHeight="306.0" prefWidth="800.0" />
+                        <TextArea fx:id="editortxt" prefHeight="288.0" prefWidth="638.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children></AnchorPane>
             </content>
           </TitledPane>
@@ -92,7 +109,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextArea prefHeight="305.0" prefWidth="800.0" />
+                        <TextArea fx:id="logi" prefHeight="288.0" prefWidth="638.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children></AnchorPane>
             </content>
           </TitledPane>
@@ -100,6 +117,6 @@
       </Accordion>
    </center>
    <bottom>
-      <Label text="Label" BorderPane.alignment="CENTER_LEFT" />
+      <Label fx:id="status" BorderPane.alignment="CENTER_LEFT" />
    </bottom>
 </BorderPane>
