@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.web.HTMLEditor;
 import javafx.stage.FileChooser;
@@ -16,6 +17,7 @@ public class HelloController {
     public HTMLEditor editor;
     public TextArea logi;
     public TextArea editortxt;
+    public TextField poisciTextField;
     @FXML
     private Label welcomeText;
 
@@ -43,6 +45,8 @@ public class HelloController {
                 logi.appendText("Odprli ste datoteko: " + f.getName() + ". Velikost: " + f.length() + " bytov\n");
             } catch (Exception e){
                 System.out.println(e.getMessage());
+                status.setText("Neuspešno odpiranje datoteke. Napaka: " + e.getMessage());
+                logi.appendText("Neuspešno odpiranje datoteke. Napaka: " + e.getMessage() + "\n");
             }
         }
     }
@@ -57,7 +61,11 @@ public class HelloController {
                 }
                 status.setText("Zapisal datoteko "+f.getName()+'\n');
                 logi.appendText("Zapisal datoteko "+f.getName()+'\n');
-            }catch (Exception e){}
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+                status.setText("Neuspešno shranjevanje datoteke. Napaka: " + e.getMessage());
+                logi.appendText("Neuspešno shranjevanje datoteke. Napaka: " + e.getMessage() + "\n");
+            }
         }
     }
 
@@ -73,11 +81,16 @@ public class HelloController {
                     bw.write(editor.getHtmlText());
                 }
                 logi.appendText("Zapisal daltoteko "+f.getName()+'\n');
-            }catch (Exception e){}
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+                status.setText("Neuspešno shranjevanje datoteke. Napaka: " + e.getMessage());
+                logi.appendText("Neuspešno shranjevanje datoteke. Napaka: " + e.getMessage() + "\n");
+            }
         }
     }
 
     public void zapriSB(ActionEvent actionEvent) {
+        shraniButtonSB(actionEvent); //Shrani spremembe v odprto datoteko pred zapiranjem.
         System.exit(0);
     }
 
@@ -90,4 +103,15 @@ public class HelloController {
         editor.setHtmlText(editortxt.getText());
         txt = false;
     }
+
+    public void najdiSB(ActionEvent actionEvent) {
+        String besedilo = editor.getHtmlText();
+        int kazalec = besedilo.indexOf(poisciTextField.getText());
+        editortxt.positionCaret(kazalec);
+        editortxt.requestFocus();
+        status.setText(String.valueOf(kazalec));
+    }
+
+    //TODO: Naredi Najdi vse in zamenjaj.
+
 }
