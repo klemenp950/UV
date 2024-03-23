@@ -71,7 +71,7 @@
                      </HBox.margin>
                   </Button>
                   <Separator orientation="VERTICAL" />
-                  <Button mnemonicParsing="false" text="Najdi vse in zamenjaj">
+                  <Button mnemonicParsing="false" onAction="#najdiVseInZamenjajSB" text="Najdi vse in zamenjaj">
                      <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
@@ -96,7 +96,7 @@
                         <Insets bottom="10.0" right="10.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField>
+                  <TextField fx:id="zamenjajTextField">
                      <HBox.margin>
                         <Insets bottom="10.0" />
                      </HBox.margin>
@@ -119,7 +119,7 @@
           </TitledPane>
           <TitledPane animated="false" onMouseClicked="#titlePaneTxtSB" text="TXT">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane fx:id="anchorPaneTxt" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <TextArea fx:id="editortxt" prefHeight="288.0" prefWidth="638.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children></AnchorPane>

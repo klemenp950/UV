@@ -2,15 +2,15 @@ package org.example.naloga2;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.HTMLEditor;
 import javafx.stage.FileChooser;
 
 import java.io.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class HelloController {
     public Label status;
@@ -18,6 +18,9 @@ public class HelloController {
     public TextArea logi;
     public TextArea editortxt;
     public TextField poisciTextField;
+    public TitledPane titlePaneTxt;
+    public AnchorPane anchorPaneTxt;
+    public TextField zamenjajTextField;
     @FXML
     private Label welcomeText;
 
@@ -109,7 +112,28 @@ public class HelloController {
         int kazalec = besedilo.indexOf(poisciTextField.getText());
         editortxt.positionCaret(kazalec);
         editortxt.requestFocus();
+        editortxt.selectRange(besedilo.indexOf(poisciTextField.getText()), poisciTextField.getText().length() + besedilo.indexOf(poisciTextField.getText()));
+        // TODO: Naredi da ko iščeš po dokumentu se odpre TXT anchorPane.
         status.setText(String.valueOf(kazalec));
+    }
+
+    public void najdiVseInZamenjajSB(ActionEvent actionEvent) {
+        ArrayList<Integer> seznam = new ArrayList<Integer>();
+        int i = 0;
+        while (i < editortxt.getLength()){
+            String besedilo = editortxt.getText().substring(i);
+            int kazalec = besedilo.indexOf(poisciTextField.getText());
+            if(kazalec != -1)
+                seznam.add(kazalec + i);
+            else
+                break;
+
+            i += kazalec + poisciTextField.getLength();
+        }
+
+        for (Integer integer : seznam) {
+            editortxt.replaceText(new IndexRange(integer, integer + poisciTextField.getLength()), zamenjajTextField.getText());
+        }
     }
 
     //TODO: Naredi Najdi vse in zamenjaj.
