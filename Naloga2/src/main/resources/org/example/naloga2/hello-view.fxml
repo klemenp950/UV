@@ -107,9 +107,9 @@
       </VBox>
    </top>
    <center>
-      <Accordion BorderPane.alignment="CENTER">
+      <Accordion fx:id="accordion" BorderPane.alignment="CENTER">
         <panes>
-          <TitledPane animated="false" onMouseClicked="#titlePaneHTMLSB" text="HTML ">
+          <TitledPane fx:id="titlePaneHtml" animated="false" onMouseClicked="#titlePaneHTMLSB" text="HTML ">
             <content>
               <AnchorPane>
                      <children>

@@ -2,6 +2,7 @@ package org.example.naloga2;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -9,7 +10,10 @@ import javafx.scene.web.HTMLEditor;
 import javafx.stage.FileChooser;
 
 import java.io.*;
+import java.lang.invoke.StringConcatFactory;
 import java.lang.reflect.Array;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class HelloController {
@@ -21,6 +25,8 @@ public class HelloController {
     public TitledPane titlePaneTxt;
     public AnchorPane anchorPaneTxt;
     public TextField zamenjajTextField;
+    public Accordion accordion;
+    public TitledPane titlePaneHtml;
     @FXML
     private Label welcomeText;
 
@@ -43,13 +49,15 @@ public class HelloController {
                     sb.append(line + "\n");
                 }
                 editor.setHtmlText(sb.toString());
-                status.setText("Odprli ste datoteko: " + f.getName() + ". Velikost: " + f.length() + " bytov");
                 editortxt.setText(sb.toString() + "\n");
-                logi.appendText("Odprli ste datoteko: " + f.getName() + ". Velikost: " + f.length() + " bytov\n");
+                String log = "Odprli ste datoteko: " + f.getName() + ". Velikost: " + f.length() + " bytov.\n";
+                status.setText(log);
+                logi.appendText(String.format("[%s]: %s", getTime(), log));
             } catch (Exception e){
                 System.out.println(e.getMessage());
-                status.setText("Neuspešno odpiranje datoteke. Napaka: " + e.getMessage());
-                logi.appendText("Neuspešno odpiranje datoteke. Napaka: " + e.getMessage() + "\n");
+                String log = "Neuspešno odpiranje datoteke. Napaka: " + e.getMessage() + ".\n";
+                status.setText(log);
+                logi.appendText(String.format("[%s]: %s", getTime(), log));
             }
         }
     }
@@ -62,12 +70,46 @@ public class HelloController {
                 } else{
                     bw.write(editor.getHtmlText());
                 }
-                status.setText("Zapisal datoteko "+f.getName()+'\n');
-                logi.appendText("Zapisal datoteko "+f.getName()+'\n');
+                String log = "Zapisal datoteko "+f.getName()+".\n";
+                status.setText(log);
+                logi.appendText(String.format("[%s]: %s", getTime(), log));
             }catch (Exception e){
                 System.out.println(e.getMessage());
-                status.setText("Neuspešno shranjevanje datoteke. Napaka: " + e.getMessage());
-                logi.appendText("Neuspešno shranjevanje datoteke. Napaka: " + e.getMessage() + "\n");
+                String log = "Neuspešno shranjevanje datoteke. Napaka: " + e.getMessage() + ".\n";
+                status.setText(log);
+                logi.appendText(String.format("[%s]: %s", getTime(), log));
+            }
+        }
+
+        if(new File(f.getParentFile().getPath() + "\\" + f.getName().split("\\.")[0] + "-logs.txt").exists()){
+            System.out.println("Datoteka že obstaja.");
+            File logs = new File(f.getParentFile().getPath() + "\\" + f.getName().split("\\.")[0] + "-logs.txt");
+            try(BufferedWriter bw = new BufferedWriter(new FileWriter(logs, true))){
+                String log = "Zapisal datoteko "+logs.getName()+".\n";
+                status.setText(log);
+                logi.appendText(String.format("[%s]: %s", getTime(), log));
+                bw.append(logi.getText());
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+                String log = "Neuspešno shranjevanje datoteke. Napaka: " + e.getMessage() + ".\n";
+                status.setText(log);
+                logi.appendText(String.format("[%s]: %s", getTime(), log));
+            }
+        } else {
+            File logs = new File(f.getParentFile().getPath() + "\\" + f.getName().split("\\.")[0] + "-logs.txt");
+            try {
+                logs.createNewFile();
+                try (BufferedWriter bw = new BufferedWriter(new FileWriter(logs))){
+                    String log = "Zapisal datoteko "+logs.getName()+".\n";
+                    status.setText(log);
+                    logi.appendText(String.format("[%s]: %s", getTime(), log));
+                    bw.append(logi.getText());
+                }
+            } catch (Exception e){
+                System.out.println(e.getMessage());
+                String log = "Neuspešno ustvarjanje datoteke z logi. Napaka: " + e.getMessage() + ".\n";
+                status.setText(log);
+                logi.appendText(String.format("[%s]: %s", getTime(), log));
             }
         }
     }
@@ -83,11 +125,45 @@ public class HelloController {
                 } else{
                     bw.write(editor.getHtmlText());
                 }
-                logi.appendText("Zapisal daltoteko "+f.getName()+'\n');
+                String log = "Zapisal daltoteko "+f.getName()+".\n";
+                status.setText(log);
+                logi.appendText(String.format("[%s]: %s", getTime(), log));
             }catch (Exception e){
                 System.out.println(e.getMessage());
-                status.setText("Neuspešno shranjevanje datoteke. Napaka: " + e.getMessage());
-                logi.appendText("Neuspešno shranjevanje datoteke. Napaka: " + e.getMessage() + "\n");
+                String log = "Neuspešno shranjevanje datoteke. Napaka: " + e.getMessage() + ".\n";
+                status.setText(log);
+                logi.appendText(String.format("[%s]: %s", getTime(), log));
+            }
+        }
+        System.out.println(f.getParentFile().getPath() + "\\" + f.getName().split("\\.")[0] + "-logs.txt");
+        if(new File((f.getParentFile().getPath() + "\\" + f.getName().split("\\.")[0] + "-logs.txt")).exists()){
+            File logs = new File(f.getParentFile().getPath() + "\\" + f.getName().split("\\.")[0] + "-logs.txt");
+            try(BufferedWriter bw = new BufferedWriter(new FileWriter(logs))){
+                String log = "Zapisal datoteko "+logs.getName()+".\n";
+                status.setText(log);
+                logi.appendText(String.format("[%s]: %s", getTime(), log));
+                bw.append(logi.getText());
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+                String log = "Neuspešno shranjevanje datoteke. Napaka: " + e.getMessage() + ".\n";
+                status.setText(log);
+                logi.appendText(String.format("[%s]: %s", getTime(), log));
+            }
+        } else {
+            File logs = new File(f.getParentFile().getPath() + "\\" + f.getName().split("\\.")[0] + "-logs.txt");
+            try {
+                logs.createNewFile();
+                try (BufferedWriter bw = new BufferedWriter(new FileWriter(logs))){
+                    String log = "Zapisal datoteko "+logs.getName()+".\n";
+                    status.setText(log);
+                    logi.appendText(String.format("[%s]: %s", getTime(), log));
+                    bw.append(logi.getText());
+                }
+            } catch (Exception e){
+                System.out.println(e.getMessage());
+                String log = "Neuspešno ustvarjanje datoteke z logi. Napaka: " + e.getMessage() + ".\n";
+                status.setText(log);
+                logi.appendText(String.format("[%s]: %s", getTime(), log));
             }
         }
     }
@@ -108,34 +184,52 @@ public class HelloController {
     }
 
     public void najdiSB(ActionEvent actionEvent) {
-        String besedilo = editor.getHtmlText();
+        String besedilo = editortxt.getText();
         int kazalec = besedilo.indexOf(poisciTextField.getText());
-        editortxt.positionCaret(kazalec);
-        editortxt.requestFocus();
-        editortxt.selectRange(besedilo.indexOf(poisciTextField.getText()), poisciTextField.getText().length() + besedilo.indexOf(poisciTextField.getText()));
-        // TODO: Naredi da ko iščeš po dokumentu se odpre TXT anchorPane.
-        status.setText(String.valueOf(kazalec));
+        if (kazalec != -1){
+            editortxt.positionCaret(kazalec);
+            editortxt.requestFocus();
+            editortxt.selectRange(besedilo.indexOf(poisciTextField.getText()), poisciTextField.getText().length() + besedilo.indexOf(poisciTextField.getText()));
+            status.setText(String.valueOf(kazalec));
+            String log = String.format("Najden niz %s.\n", poisciTextField.getText());
+            logi.appendText(String.format("[%s]: %s", getTime(), log));
+            status.setText(log);
+        } else {
+            String log = String.format("Podniza ni v datoteki %s.\n", poisciTextField.getText());
+            logi.appendText(String.format("[%s]: %s", getTime(), log));
+            status.setText(log);
+        }
+
     }
 
     public void najdiVseInZamenjajSB(ActionEvent actionEvent) {
-        ArrayList<Integer> seznam = new ArrayList<Integer>();
-        int i = 0;
-        while (i < editortxt.getLength()){
-            String besedilo = editortxt.getText().substring(i);
+        if (anchorPaneTxt.isFocused()) {
+            String besedilo = editortxt.getText();
             int kazalec = besedilo.indexOf(poisciTextField.getText());
-            if(kazalec != -1)
-                seznam.add(kazalec + i);
-            else
-                break;
-
-            i += kazalec + poisciTextField.getLength();
+            while (kazalec >= 0) {
+                besedilo = besedilo.replaceAll(poisciTextField.getText(), zamenjajTextField.getText());
+                kazalec = besedilo.indexOf(poisciTextField.getText());
+            }
+            editortxt.setText(besedilo);
+            editor.setHtmlText(besedilo);
+        } else {
+            String besedilo = editor.getHtmlText();
+            int kazalec = besedilo.indexOf(poisciTextField.getText());
+            while (kazalec >= 0) {
+                besedilo = besedilo.replaceAll(poisciTextField.getText(), zamenjajTextField.getText());
+                kazalec = besedilo.indexOf(poisciTextField.getText());
+            }
+            editor.setHtmlText(besedilo);
+            editortxt.setText(besedilo);
         }
-
-        for (Integer integer : seznam) {
-            editortxt.replaceText(new IndexRange(integer, integer + poisciTextField.getLength()), zamenjajTextField.getText());
-        }
+        String log = String.format("Zamenjali ste %s za %s.\n", poisciTextField.getText(), zamenjajTextField.getText());
+        status.setText(log);
+        logi.appendText(String.format("[%s]: %s", getTime(), log));
     }
 
-    //TODO: Naredi Najdi vse in zamenjaj.
-
+    public static String getTime(){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        return dtf.format(now);
+    }
 }
