@@ -169,7 +169,8 @@ public class HelloController {
     }
 
     public void zapriSB(ActionEvent actionEvent) {
-        shraniButtonSB(actionEvent); //Shrani spremembe v odprto datoteko pred zapiranjem.
+        if(f != null)
+            shraniButtonSB(actionEvent); //Shrani spremembe v odprto datoteko pred zapiranjem.
         System.exit(0);
     }
 
@@ -231,5 +232,11 @@ public class HelloController {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         return dtf.format(now);
+    }
+
+    public void avtorSB(ActionEvent actionEvent) {
+        String log = "Avtor: Klemen Parkelj";
+        status.setText(log);
+        logi.appendText(String.format("[%s]: %s", getTime(), log));
     }
 }

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.web.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.naloga2.HelloController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="480.0" minWidth="640.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.naloga2.HelloController">
    <top>
       <VBox BorderPane.alignment="CENTER">
          <children>
@@ -34,13 +34,13 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="_Iskanje">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="_Najdi" />
-                        <MenuItem mnemonicParsing="false" text="Najdi vse in _zamenjaj" />
+                    <MenuItem mnemonicParsing="false" onAction="#najdiSB" text="Najdi" />
+                        <MenuItem mnemonicParsing="false" onAction="#najdiVseInZamenjajSB" text="Najdi vse in zamenjaj" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="_Pomoč">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Avtor" />
+                    <MenuItem mnemonicParsing="false" onAction="#avtorSB" text="Avtor" />
                   </items>
                 </Menu>
               </menus>
