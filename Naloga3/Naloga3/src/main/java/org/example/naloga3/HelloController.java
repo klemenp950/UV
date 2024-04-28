@@ -1,12 +1,24 @@
 package org.example.naloga3;
 
-import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 
+import java.awt.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.net.URI;
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,8 +28,8 @@ public class HelloController {
     public TextField mesto;
     public TextField drzava;
     public Label status;
-    public Spinner osebePod7;
-    public Spinner osebePod18;
+    public Spinner<Integer> osebePod7;
+    public Spinner<Integer> osebePod18;
     public TextArea posebnePotrebe;
     public TextField imePlacnika;
     public TextField ulica;
@@ -43,6 +55,18 @@ public class HelloController {
     public TitledPane titlePanePodatki;
     public TitledPane titlePaneIzbiraDestinacije;
     public TitledPane titlePaneNacinPotovanja;
+    public HBox nastanitevHBox;
+    public CheckBox nastanitevSoba;
+    public CheckBox nastanitevApartma;
+    public CheckBox nastanitevMobilnaHiska;
+    public CheckBox nastanitevHisa;
+    public CheckBox nastanitevGlamping;
+    public CheckBox nastanitevHotel;
+    public CheckBox nastanitevSam;
+    public FileChooser fc;
+    public File file;
+    public Button shraniButton;
+    public VBox nacinPotovanjaVBox;
 
     @FXML
 
@@ -53,9 +77,116 @@ public class HelloController {
             status.setText("Popravite vnos v rdečih poljih.");
             System.out.println(poljazNapakami.toString());
         } else {
+            try{
+                BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));
+                String vrstica = narediVnos();
+                bw.write(vrstica);
+                bw.close();
+            } catch (Exception e){
+                status.setText(String.format("Napaka pri shranjevanju v datoteko. Napaka: %s", e.getMessage()));
+                System.out.print(e.toString());
+            }
             status.setText("Vnos uspešen.");
         }
     }
+
+    public void ponastavi(ActionEvent actionEvent) {
+        drzava.setText("");
+        mesto.setText("");
+        datumVrnitve.setValue(null);
+        datumOdhoda.setValue(null);
+
+        ObservableList<Node> ar = nacinPotovanjaVBox.getChildren();
+        for (Object o : ar) {
+            CheckBox temp = (CheckBox) o;
+            temp.setSelected(false);
+        }
+
+        ar = nastanitevHBox.getChildren();
+        for (int i = 1; i < ar.size(); i++) {
+            Object o = ar.get(i);
+            CheckBox temp = (CheckBox) o;
+            temp.setSelected(false);
+        }
+
+        osebePod7.getValueFactory().setValue(0);
+        osebePod18.getValueFactory().setValue(0);
+        posebnePotrebe.setText("");
+        imePlacnika.setText("");
+        priimekPlacnika.setText("");
+        ulica.setText("");
+        hisnaSt.setText("");
+        mestoPlacnika.setText("");
+        postnaSt.setText("");
+        drzavaPlacnika.setText("");
+        datumRojstva.setValue(null);
+        imeNaKartici.setText("");
+        stKartice.setText("");
+        datumNaKartici.setText("");
+        ccv.setText("");
+        podatkiOPotnikih.setText("");
+    }
+
+    private String narediVnos(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(drzava.getText()).append(",");
+        sb.append(mesto.getText()).append(",");
+        sb.append(reformatDate(String.valueOf(datumVrnitve.getValue()))).append(",");
+        sb.append(reformatDate(String.valueOf(datumOdhoda.getValue()))).append(",");
+
+        ObservableList<Node> ar = nacinPotovanjaVBox.getChildren();
+        for (Object o : ar) {
+            CheckBox temp = (CheckBox) o;
+            if (temp.isSelected()) {
+                sb.append(temp.getText()).append(";");
+            }
+        }
+        sb.deleteCharAt(sb.length() - 1);
+        sb.append(",");
+
+        ar = nastanitevHBox.getChildren();
+        for (int i = 1; i < ar.size(); i++) {
+            Object o = ar.get(i);
+            CheckBox temp = (CheckBox) o;
+            if (temp.isSelected()) {
+                sb.append(temp.getText()).append(";");
+            }
+        }
+        sb.deleteCharAt(sb.length() - 1);
+        sb.append(",");
+
+        sb.append(osebePod7.getValue()).append(",");
+        sb.append(osebePod18.getValue()).append(",");
+        sb.append(posebnePotrebe.getText()).append(",");
+        sb.append(imePlacnika.getText()).append(",");
+        sb.append(priimekPlacnika.getText()).append(",");
+        sb.append(ulica.getText()).append(",");
+        sb.append(hisnaSt.getText()).append(",");
+        sb.append(mestoPlacnika.getText()).append(",");
+        sb.append(postnaSt.getText()).append(",");
+        sb.append(drzavaPlacnika.getText()).append(",");
+        sb.append(reformatDate(String.valueOf(datumRojstva.getValue()))).append(",");
+        sb.append(imeNaKartici.getText()).append(",");
+        sb.append(stKartice.getText()).append(",");
+        sb.append(datumNaKartici.getText()).append(",");
+        sb.append(ccv.getText()).append(",");
+        sb.append(podatkiOPotnikih.getText()).append("\n");
+
+        return sb.toString();
+    }
+
+    public void odpri(ActionEvent actionEvent){
+        try{
+            fc = new FileChooser();
+            fc.setTitle("Izberi datoteko za shranjevanje.");
+            file = fc.showOpenDialog(null);
+            status.setText(String.format("Odprli ste datoteko: %s", file.getName()));
+        } catch (Exception e){
+            status.setText(String.format("Neuspešno odpiranje datoteke. Napaka: %s", e.getMessage()));
+            System.out.print(e.toString());
+        }
+    }
+
 
     private boolean dataValidation(){
         boolean napaka = false;
@@ -75,7 +206,7 @@ public class HelloController {
         Pattern regexDatumKartica = Pattern.compile("\\d{2}/\\d{2}");
 
         boolean matchFound = preveriRegex(regexDrzava, drzava.getText());
-        if (!matchFound || drzava.getText() == null){
+        if (drzava.getText() == null || !matchFound){
             drzava.setStyle("-fx-border-color: red ; -fx-border-radius: 3px ;");
             poljazNapakami.add(drzava.getId());
             napaka = true;
@@ -221,6 +352,12 @@ public class HelloController {
             poljazNapakami.add(x);
         }
 
+        if (!nastanitevApartma.isSelected() && !nastanitevGlamping.isSelected() && !nastanitevHisa.isSelected() && !nastanitevHotel.isSelected() && !nastanitevSam.isSelected() && !nastanitevMobilnaHiska.isSelected() && !nastanitevSoba.isSelected()){
+            napaka = true;
+            nastanitevSoba.getParent().setStyle("-fx-border-color: red ; -fx-border-radius: 3px ;");
+            poljazNapakami.add(nastanitevHBox.getId());
+        }
+
         return napaka;
     }
 
@@ -270,5 +407,20 @@ public class HelloController {
         titlePanePodatki.setStyle("-fx-border-color: lightgray ; -fx-border-radius: 3px ;");
         titlePaneIzbiraDestinacije.setStyle("-fx-border-color: lightgray ; -fx-border-radius: 3px ;");
         titlePaneNacinPotovanja.setStyle("-fx-border-color: lightgray ; -fx-border-radius: 3px ;");
+        nastanitevHBox.setStyle("-fx-border-style: none ;");
+    }
+
+    public boolean openWebpage(ActionEvent actionEvent) {
+        URI uri = URI.create("https://github.com/klemenp950/UV/tree/main/Naloga3/Naloga3");
+        Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
+        if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
+            try {
+                desktop.browse(uri);
+                return true;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
     }
 }

@@ -2,11 +2,12 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.input.*?>
 <?import javafx.scene.layout.*?>
 
 <BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.naloga3.HelloController">
    <bottom>
-      <Label fx:id="status" text="Label" BorderPane.alignment="CENTER_LEFT" />
+      <Label fx:id="status" BorderPane.alignment="CENTER_LEFT" />
    </bottom>
    <center>
        <ScrollPane fitToWidth="true" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
@@ -54,11 +55,11 @@
             </HBox>
             <HBox minHeight="200.0" prefHeight="150.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
-                  <TitledPane fx:id="titlePaneNacinPotovanja" animated="false" collapsible="false" maxWidth="-Infinity" prefWidth="40.0" text="Način potovanja do lokacije" HBox.hgrow="ALWAYS">
+                  <TitledPane fx:id="titlePaneNacinPotovanja" animated="false" collapsible="false" maxWidth="-Infinity" prefHeight="200.0" prefWidth="165.0" text="Način potovanja do lokacije" HBox.hgrow="ALWAYS">
                     <content>
                       <AnchorPane>
                            <children>
-                              <VBox prefHeight="220.0" prefWidth="436.8" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <VBox fx:id="nacinPotovanjaVBox" prefHeight="220.0" prefWidth="436.8" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <CheckBox fx:id="prevozSam" mnemonicParsing="false" text="V lastni režiji" />
                                     <CheckBox fx:id="prevozLetalo" mnemonicParsing="false" text="Z letalom" />
@@ -80,37 +81,37 @@
                            <children>
                               <VBox prefHeight="168.8" prefWidth="405.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
+                                    <HBox fx:id="nastanitevHBox" alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
                                        <children>
                                           <Label text="Tip nastanitve: ">
                                              <HBox.margin>
                                                 <Insets right="5.0" />
                                              </HBox.margin></Label>
-                                          <CheckBox layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Soba">
+                                          <CheckBox fx:id="nastanitevSoba" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Soba">
                                              <HBox.margin>
                                                 <Insets right="5.0" />
                                              </HBox.margin></CheckBox>
-                                          <CheckBox layoutX="84.0" layoutY="10.0" mnemonicParsing="false" text="Apartma">
+                                          <CheckBox fx:id="nastanitevApartma" layoutX="84.0" layoutY="10.0" mnemonicParsing="false" text="Apartma">
                                              <HBox.margin>
                                                 <Insets right="5.0" />
                                              </HBox.margin></CheckBox>
-                                          <CheckBox layoutX="233.0" layoutY="10.0" mnemonicParsing="false" text="Mobilna hiška">
+                                          <CheckBox fx:id="nastanitevMobilnaHiska" layoutX="233.0" layoutY="10.0" mnemonicParsing="false" text="Mobilna hiška">
                                              <HBox.margin>
                                                 <Insets right="5.0" />
                                              </HBox.margin></CheckBox>
-                                          <CheckBox layoutX="294.0" layoutY="10.0" mnemonicParsing="false" text="Hiša">
+                                          <CheckBox fx:id="nastanitevHisa" layoutX="294.0" layoutY="10.0" mnemonicParsing="false" text="Hiša">
                                              <HBox.margin>
                                                 <Insets right="5.0" />
                                              </HBox.margin></CheckBox>
-                                          <CheckBox layoutX="306.0" layoutY="10.0" mnemonicParsing="false" text="Glamping šotor">
+                                          <CheckBox fx:id="nastanitevGlamping" layoutX="306.0" layoutY="10.0" mnemonicParsing="false" text="Glamping šotor">
                                              <HBox.margin>
                                                 <Insets right="5.0" />
                                              </HBox.margin></CheckBox>
-                                          <CheckBox layoutX="314.0" layoutY="10.0" mnemonicParsing="false" text="Hotel">
+                                          <CheckBox fx:id="nastanitevHotel" layoutX="314.0" layoutY="10.0" mnemonicParsing="false" text="Hotel">
                                              <HBox.margin>
                                                 <Insets right="5.0" />
                                              </HBox.margin></CheckBox>
-                                          <CheckBox layoutX="328.0" layoutY="10.0" mnemonicParsing="false" text="V lastni režiji">
+                                          <CheckBox fx:id="nastanitevSam" layoutX="328.0" layoutY="10.0" mnemonicParsing="false" text="V lastni režiji">
                                              <HBox.margin>
                                                 <Insets right="5.0" />
                                              </HBox.margin></CheckBox>
@@ -152,7 +153,7 @@
                            </children></AnchorPane>
                     </content>
                      <HBox.margin>
-                        <Insets left="5.0" right="10.0" />
+                        <Insets bottom="5.0" left="5.0" right="10.0" />
                      </HBox.margin>
                   </TitledPane>
                </children>
@@ -238,11 +239,11 @@
             </HBox>
                <HBox alignment="CENTER" layoutX="10.0" layoutY="548.0" VBox.vgrow="ALWAYS">
                   <children>
-                     <Button minWidth="105.0" mnemonicParsing="false" onAction="#shrani" prefWidth="105.0" text="Shrani vnos">
+                     <Button fx:id="shraniButton" minWidth="105.0" mnemonicParsing="false" onAction="#shrani" prefWidth="105.0" style="-fx-border-color: lightgreen; -fx-border-radius: 3px;" text="Shrani vnos">
                         <HBox.margin>
                            <Insets bottom="10.0" left="10.0" right="5.0" top="10.0" />
                         </HBox.margin></Button>
-                     <Button minWidth="105.0" mnemonicParsing="false" prefWidth="105.0" text="Ponastavi vnose" HBox.hgrow="ALWAYS">
+                     <Button minWidth="105.0" mnemonicParsing="false" onAction="#ponastavi" prefWidth="105.0" style="-fx-border-color: #ff5252; -fx-border-radius: 3px;" text="Ponastavi vnose" HBox.hgrow="ALWAYS">
                         <HBox.margin>
                            <Insets bottom="10.0" left="5.0" right="10.0" top="10.0" />
                         </HBox.margin></Button>
@@ -255,19 +256,22 @@
    <top>
       <MenuBar minHeight="-Infinity" minWidth="-Infinity" BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="_Datoteka">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem mnemonicParsing="false" onAction="#odpri" text="Odpri">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
+          <Menu mnemonicParsing="false" text="_Uredi">
             <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
+              <MenuItem mnemonicParsing="false" onAction="#ponastavi" text="Ponastavi vnose" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Help">
+          <Menu mnemonicParsing="false" text="_Pomoč">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" onAction="#openWebpage" text="O programu" />
             </items>
           </Menu>
         </menus>
