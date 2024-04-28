@@ -32,19 +32,34 @@ public class HelloController {
     public TextField stKartice;
     public TextArea podatkiOPotnikih;
     public TextField mestoPlacnika;
+    public ArrayList<String> poljazNapakami;
+    public CheckBox prevozSam;
+    public CheckBox prevozLetalo;
+    public CheckBox prevozBus;
+    public CheckBox prevozKolo;
+    public CheckBox prevozVlak;
+    public TitledPane titlePaneNastanitev;
+    public TitledPane titlePanePlacilo;
+    public TitledPane titlePanePodatki;
+    public TitledPane titlePaneIzbiraDestinacije;
+    public TitledPane titlePaneNacinPotovanja;
+
     @FXML
 
     public void shrani(ActionEvent actionEvent) {
         nastaviRoboveNaCrno();
         boolean validacija = dataValidation();
-        if (!validacija){
+        if (validacija){
             status.setText("Popravite vnos v rdečih poljih.");
+            System.out.println(poljazNapakami.toString());
+        } else {
+            status.setText("Vnos uspešen.");
         }
     }
 
     private boolean dataValidation(){
         boolean napaka = false;
-        ArrayList<String> poljaZNapakami = new ArrayList<String>();
+        poljazNapakami = new ArrayList<>();
         Pattern regexDrzava = Pattern.compile("[A-Z][a-z]{3,20}");
         Pattern regexDatum = Pattern.compile("(0[1-9]|[12][0-9]|3[01])\\.(0[1-9]|1[1,2])\\.(19|20)\\d{2}");
         Pattern regexIme = Pattern.compile("[A-Z][a-z]{1,30}");
@@ -62,7 +77,7 @@ public class HelloController {
         boolean matchFound = preveriRegex(regexDrzava, drzava.getText());
         if (!matchFound || drzava.getText() == null){
             drzava.setStyle("-fx-border-color: red ; -fx-border-radius: 3px ;");
-            poljaZNapakami.add(drzava.getId());
+            poljazNapakami.add(drzava.getId());
             napaka = true;
         }
 
@@ -70,19 +85,19 @@ public class HelloController {
             matchFound = preveriRegex(regexDatum, reformatDate(datumOdhoda.getValue().toString()));
             if (datumOdhoda.getValue().toString().isEmpty() || !matchFound){
                 datumOdhoda.setStyle("-fx-border-color: red ; -fx-border-radius: 3px ;");
-                poljaZNapakami.add(datumOdhoda.getId());
+                poljazNapakami.add(datumOdhoda.getId());
                 napaka = true;
             }
         } else {
             datumOdhoda.setStyle("-fx-border-color: red ; -fx-border-radius: 3px ;");
-            poljaZNapakami.add(datumOdhoda.getId());
+            poljazNapakami.add(datumOdhoda.getId());
             napaka = true;
         }
 
         matchFound = preveriRegex(regexMesto, mesto.getText());
         if (!matchFound || mesto.getText() == null){
             mesto.setStyle("-fx-border-color: red ; -fx-border-radius: 3px ;");
-            poljaZNapakami.add(mesto.getId());
+            poljazNapakami.add(mesto.getId());
             napaka = true;
         }
 
@@ -90,20 +105,20 @@ public class HelloController {
             matchFound = preveriRegex(regexDatum, reformatDate(datumVrnitve.getValue().toString()));
             if (datumVrnitve.getValue().toString().isEmpty() || !matchFound){
                 datumVrnitve.setStyle("-fx-border-color: red ; -fx-border-radius: 3px ;");
-                poljaZNapakami.add(datumVrnitve.getId());
+                poljazNapakami.add(datumVrnitve.getId());
                 napaka = true;
             }
 
         } else {
             datumVrnitve.setStyle("-fx-border-color: red ; -fx-border-radius: 3px ;");
-            poljaZNapakami.add(datumVrnitve.getId());
+            poljazNapakami.add(datumVrnitve.getId());
             napaka = true;
         }
 
         matchFound = preveriRegex(regexSt, String.valueOf((int)(osebePod7.getValue())));
         if (!matchFound){
             osebePod7.setStyle("-fx-border-color: red ; -fx-border-radius: 3px ;");
-            poljaZNapakami.add(osebePod7.getId());
+            poljazNapakami.add(osebePod7.getId());
             napaka = true;
         } else {
             osebePod7.getValue();
@@ -112,98 +127,98 @@ public class HelloController {
         matchFound = preveriRegex(regexSt, String.valueOf((int)(osebePod18.getValue())));
         if (!matchFound){
             osebePod18.setStyle("-fx-border-color: red ; -fx-border-radius: 3px ;");
-            poljaZNapakami.add(osebePod18.getId());
+            poljazNapakami.add(osebePod18.getId());
             napaka = true;
         }
 
         matchFound = preveriRegex(regexIme, imePlacnika.getText());
         if (!matchFound || imePlacnika.getText() == null){
             imePlacnika.setStyle("-fx-border-color: red ; -fx-border-radius: 3px ;");
-            poljaZNapakami.add(imePlacnika.getId());
+            poljazNapakami.add(imePlacnika.getId());
             napaka = true;
         }
 
         matchFound = preveriRegex(regexPriimek, priimekPlacnika.getText());
         if (!matchFound || priimekPlacnika.getText() == null){
             priimekPlacnika.setStyle("-fx-border-color: red ; -fx-border-radius: 3px ;");
-            poljaZNapakami.add(priimekPlacnika.getId());
+            poljazNapakami.add(priimekPlacnika.getId());
             napaka = true;
         }
 
         matchFound = preveriRegex(regexUlica, ulica.getText());
         if (!matchFound || ulica.getText() == null){
             ulica.setStyle("-fx-border-color: red ; -fx-border-radius: 3px ;");
-            poljaZNapakami.add(ulica.getId());
+            poljazNapakami.add(ulica.getId());
             napaka = true;
         }
 
         matchFound = preveriRegex(regexHisnaSt, hisnaSt.getText());
         if (!matchFound || hisnaSt.getText() == null){
             hisnaSt.setStyle("-fx-border-color: red ; -fx-border-radius: 3px ;");
-            poljaZNapakami.add(hisnaSt.getId());
+            poljazNapakami.add(hisnaSt.getId());
             napaka = true;
         }
 
         matchFound = preveriRegex(regexMesto, mestoPlacnika.getText());
         if (!matchFound || mestoPlacnika.getText() == null){
             mestoPlacnika.setStyle("-fx-border-color: red ; -fx-border-radius: 3px ;");
-            poljaZNapakami.add(mestoPlacnika.getId());
+            poljazNapakami.add(mestoPlacnika.getId());
             napaka = true;
         }
 
         matchFound = preveriRegex(regexPostnaSt, postnaSt.getText());
         if (!matchFound || postnaSt.getText() == null){
             postnaSt.setStyle("-fx-border-color: red ; -fx-border-radius: 3px ;");
-            poljaZNapakami.add(postnaSt.getId());
+            poljazNapakami.add(postnaSt.getId());
             napaka = true;
         }
 
         matchFound = preveriRegex(regexDrzava, drzavaPlacnika.getText());
         if (!matchFound || drzavaPlacnika.getText() == null){
             drzavaPlacnika.setStyle("-fx-border-color: red ; -fx-border-radius: 3px ;");
-            poljaZNapakami.add(drzavaPlacnika.getId());
+            poljazNapakami.add(drzavaPlacnika.getId());
             napaka = true;
         }
 
         matchFound = preveriRegex(regexDatum, reformatDate(String.valueOf(datumRojstva.getValue())));
         if (!matchFound){
             datumRojstva.setStyle("-fx-border-color: red ; -fx-border-radius: 3px ;");
-            poljaZNapakami.add(datumRojstva.getId());
+            poljazNapakami.add(datumRojstva.getId());
             napaka = true;
         }
 
         matchFound = preveriRegex(regexImePriimek, imeNaKartici.getText());
         if (!matchFound || imeNaKartici.getText() == null){
             imeNaKartici.setStyle("-fx-border-color: red ; -fx-border-radius: 3px ;");
-            poljaZNapakami.add(imeNaKartici.getId());
+            poljazNapakami.add(imeNaKartici.getId());
             napaka = true;
         }
 
         matchFound = preveriRegex(regexStKartice, stKartice.getText());
         if (!matchFound || stKartice.getText() == null){
             stKartice.setStyle("-fx-border-color: red ; -fx-border-radius: 3px ;");
-            poljaZNapakami.add(stKartice.getId());
+            poljazNapakami.add(stKartice.getId());
             napaka = true;
         }
 
         matchFound = preveriRegex(regexDatumKartica, datumNaKartici.getText());
         if (!matchFound || datumNaKartici.getText() == null){
             datumNaKartici.setStyle("-fx-border-color: red ; -fx-border-radius: 3px ;");
-            poljaZNapakami.add(datumNaKartici.getId());
+            poljazNapakami.add(datumNaKartici.getId());
             napaka = true;
         }
 
         matchFound = preveriRegex(regexCCV, ccv.getText());
         if (!matchFound || ccv.getText() == null){
             ccv.setStyle("-fx-border-color: red ; -fx-border-radius: 3px ;");
-            poljaZNapakami.add(ccv.getId());
+            poljazNapakami.add(ccv.getId());
             napaka = true;
         }
-
-        if (Objects.equals(posebnePotrebe.getText(), "")) {
-            posebnePotrebe.setStyle("-fx-border-color: red ; -fx-border-radius: 3px ;");
-            poljaZNapakami.add(posebnePotrebe.getId());
+        if (!prevozBus.isSelected() && !prevozKolo.isSelected() && !prevozSam.isSelected() && !prevozLetalo.isSelected() && !prevozVlak.isSelected()){
             napaka = true;
+            prevozBus.getParent().getParent().getParent().getParent().setStyle("-fx-border-color: red ; -fx-border-radius: 3px ;");
+            String x = prevozBus.getParent().getParent().getParent().getParent().getId();
+            poljazNapakami.add(x);
         }
 
         return napaka;
@@ -250,5 +265,10 @@ public class HelloController {
         datumOdhoda.setStyle("-fx-border-color: lightgray ; -fx-border-radius: 3px ;");
         mesto.setStyle("-fx-border-color: lightgray ; -fx-border-radius: 3px ;");
         drzava.setStyle("-fx-border-color: lightgray ; -fx-border-radius: 3px ;");
+        titlePaneNastanitev.setStyle("-fx-border-color: lightgray ; -fx-border-radius: 3px ;");
+        titlePanePlacilo.setStyle("-fx-border-color: lightgray ; -fx-border-radius: 3px ;");
+        titlePanePodatki.setStyle("-fx-border-color: lightgray ; -fx-border-radius: 3px ;");
+        titlePaneIzbiraDestinacije.setStyle("-fx-border-color: lightgray ; -fx-border-radius: 3px ;");
+        titlePaneNacinPotovanja.setStyle("-fx-border-color: lightgray ; -fx-border-radius: 3px ;");
     }
 }

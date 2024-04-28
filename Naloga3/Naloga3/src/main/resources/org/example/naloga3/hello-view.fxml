@@ -17,7 +17,7 @@
                   <Insets left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
                <children>
-                  <TitledPane animated="false" collapsible="false" minHeight="-Infinity" text="Destination selection" HBox.hgrow="ALWAYS">
+                  <TitledPane fx:id="titlePaneIzbiraDestinacije" animated="false" collapsible="false" minHeight="-Infinity" text="Izbira destinacije" HBox.hgrow="ALWAYS">
                     <content>
                       <AnchorPane maxHeight="-Infinity">
                            <children>
@@ -33,10 +33,10 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Label text="Contry" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-                                    <Label text="Departure date" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-                                    <Label text="City" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-                                    <Label text="Return home" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                                    <Label text="Država" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                                    <Label text="Datum odhoda" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                                    <Label text="Mesto" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                                    <Label text="Datum vrnitve" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
                                     <DatePicker fx:id="datumOdhoda" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
                                     <DatePicker fx:id="datumVrnitve" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
                                     <TextField fx:id="drzava" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
@@ -54,17 +54,17 @@
             </HBox>
             <HBox minHeight="200.0" prefHeight="150.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
-                  <TitledPane animated="false" collapsible="false" maxWidth="-Infinity" prefWidth="40.0" text="Mode of traveling to destination" HBox.hgrow="ALWAYS">
+                  <TitledPane fx:id="titlePaneNacinPotovanja" animated="false" collapsible="false" maxWidth="-Infinity" prefWidth="40.0" text="Način potovanja do lokacije" HBox.hgrow="ALWAYS">
                     <content>
                       <AnchorPane>
                            <children>
                               <VBox prefHeight="220.0" prefWidth="436.8" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <CheckBox mnemonicParsing="false" text="CheckBox" />
-                                    <CheckBox mnemonicParsing="false" text="CheckBox" />
-                                    <CheckBox mnemonicParsing="false" text="CheckBox" />
-                                    <CheckBox mnemonicParsing="false" text="CheckBox" />
-                                    <CheckBox mnemonicParsing="false" text="CheckBox" />
+                                    <CheckBox fx:id="prevozSam" mnemonicParsing="false" text="V lastni režiji" />
+                                    <CheckBox fx:id="prevozLetalo" mnemonicParsing="false" text="Z letalom" />
+                                    <CheckBox fx:id="prevozBus" mnemonicParsing="false" text="Z avtobusom" />
+                                    <CheckBox fx:id="prevozVlak" mnemonicParsing="false" text="Z vlakom" />
+                                    <CheckBox fx:id="prevozKolo" mnemonicParsing="false" text="S kolesom" />
                                  </children>
                               </VBox>
                            </children>
@@ -74,7 +74,7 @@
                         <Insets bottom="5.0" left="10.0" right="5.0" />
                      </HBox.margin>
                   </TitledPane>
-                  <TitledPane animated="false" collapsible="false" text="Lodging" HBox.hgrow="ALWAYS">
+                  <TitledPane fx:id="titlePaneNastanitev" animated="false" collapsible="false" text="Nastanitev" HBox.hgrow="ALWAYS">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -82,27 +82,27 @@
                                  <children>
                                     <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
                                        <children>
-                                          <Label text="Lodging:">
+                                          <Label text="Tip nastanitve: ">
                                              <HBox.margin>
                                                 <Insets right="5.0" />
                                              </HBox.margin></Label>
-                                          <CheckBox layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Room">
+                                          <CheckBox layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Soba">
                                              <HBox.margin>
                                                 <Insets right="5.0" />
                                              </HBox.margin></CheckBox>
-                                          <CheckBox layoutX="84.0" layoutY="10.0" mnemonicParsing="false" text="Apartment">
+                                          <CheckBox layoutX="84.0" layoutY="10.0" mnemonicParsing="false" text="Apartma">
                                              <HBox.margin>
                                                 <Insets right="5.0" />
                                              </HBox.margin></CheckBox>
-                                          <CheckBox layoutX="233.0" layoutY="10.0" mnemonicParsing="false" text="Mobile home">
+                                          <CheckBox layoutX="233.0" layoutY="10.0" mnemonicParsing="false" text="Mobilna hiška">
                                              <HBox.margin>
                                                 <Insets right="5.0" />
                                              </HBox.margin></CheckBox>
-                                          <CheckBox layoutX="294.0" layoutY="10.0" mnemonicParsing="false" text="House">
+                                          <CheckBox layoutX="294.0" layoutY="10.0" mnemonicParsing="false" text="Hiša">
                                              <HBox.margin>
                                                 <Insets right="5.0" />
                                              </HBox.margin></CheckBox>
-                                          <CheckBox layoutX="306.0" layoutY="10.0" mnemonicParsing="false" text="Glamping">
+                                          <CheckBox layoutX="306.0" layoutY="10.0" mnemonicParsing="false" text="Glamping šotor">
                                              <HBox.margin>
                                                 <Insets right="5.0" />
                                              </HBox.margin></CheckBox>
@@ -110,7 +110,7 @@
                                              <HBox.margin>
                                                 <Insets right="5.0" />
                                              </HBox.margin></CheckBox>
-                                          <CheckBox layoutX="328.0" layoutY="10.0" mnemonicParsing="false" text="On my own">
+                                          <CheckBox layoutX="328.0" layoutY="10.0" mnemonicParsing="false" text="V lastni režiji">
                                              <HBox.margin>
                                                 <Insets right="5.0" />
                                              </HBox.margin></CheckBox>
@@ -142,11 +142,11 @@
                                           <Insets bottom="5.0" />
                                        </VBox.margin>
                                     </HBox>
-                                    <Label text="Special requests:">
+                                    <Label text="Posebne potrebe:">
                                        <VBox.margin>
                                           <Insets bottom="5.0" />
                                        </VBox.margin></Label>
-                                    <TextArea fx:id="posebnePotrebe" prefHeight="200.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" prefWidth="200.0" />
+                                    <TextArea fx:id="posebnePotrebe" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" />
                                  </children>
                               </VBox>
                            </children></AnchorPane>
@@ -162,7 +162,7 @@
             </HBox>
             <HBox layoutX="10.0" layoutY="285.0" minHeight="200.0" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
-                  <TitledPane animated="false" collapsible="false" text="Podatki za plačilo" HBox.hgrow="ALWAYS">
+                  <TitledPane fx:id="titlePanePlacilo" animated="false" collapsible="false" text="Podatki za plačilo" HBox.hgrow="ALWAYS">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -186,26 +186,26 @@
                                     <Label text="Priimek" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                                     <Label text="Ulica" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                                     <Label text="Hišna številka" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                                    <TextField fx:id="imePlacnika" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" maxWidth="300.0" minWidth="70.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                                    <TextField fx:id="ulica" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" maxWidth="300.0" minWidth="70.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                                    <TextField fx:id="priimekPlacnika" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" maxWidth="300.0" minWidth="70.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                                    <TextField fx:id="hisnaSt" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" maxWidth="300.0" minWidth="70.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                    <TextField fx:id="imePlacnika" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                    <TextField fx:id="ulica" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                    <TextField fx:id="priimekPlacnika" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                    <TextField fx:id="hisnaSt" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                                     <Label text="Mesto" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                                     <Label text="Poštna št" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                                     <Label text="Država" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                                     <Label text="Datum rojstva" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                                    <TextField fx:id="mestoPlacnika" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" maxWidth="300.0" minWidth="70.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                                    <TextField fx:id="postnaSt" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" maxWidth="300.0" minWidth="70.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                                    <TextField fx:id="drzavaPlacnika" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" maxWidth="300.0" minWidth="70.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                                    <DatePicker fx:id="datumRojstva" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" maxWidth="300.0" minWidth="70.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                                    <TextField fx:id="mestoPlacnika" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                    <TextField fx:id="postnaSt" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                    <TextField fx:id="drzavaPlacnika" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                                    <DatePicker fx:id="datumRojstva" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                                     <Label text="Ime na kartici" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
                                     <Label text="Številka kartice" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
                                     <Label text="CCV" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-                                    <PasswordField fx:id="ccv" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" maxWidth="300.0" minWidth="70.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-                                    <TextField fx:id="imeNaKartici" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" maxWidth="300.0" minWidth="70.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-                                    <TextField fx:id="stKartice" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" maxWidth="300.0" minWidth="70.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                                    <PasswordField fx:id="ccv" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+                                    <TextField fx:id="imeNaKartici" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                                    <TextField fx:id="stKartice" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
                                     <Label text="Datum na kartici" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-                                    <TextField fx:id="datumNaKartici" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" maxWidth="300.0" minWidth="70.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+                                    <TextField fx:id="datumNaKartici" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
                                  </children>
                               </GridPane>
                            </children>
@@ -222,11 +222,11 @@
             </HBox>
             <HBox layoutX="10.0" layoutY="348.0" minHeight="200.0" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <TitledPane animated="false" collapsible="false" text="Podatki o potnikih" HBox.hgrow="ALWAYS">
+                  <TitledPane fx:id="titlePanePodatki" animated="false" collapsible="false" text="Podatki o potnikih" HBox.hgrow="ALWAYS">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TextArea fx:id="podatkiOPotnikih" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" prefHeight="173.6" prefWidth="576.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <TextArea fx:id="podatkiOPotnikih" prefHeight="173.6" prefWidth="576.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
                      </content>
