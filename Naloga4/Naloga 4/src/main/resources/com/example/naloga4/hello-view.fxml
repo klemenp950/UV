@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.input.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.naloga4.HelloController">
+    <bottom>
+        <Label fx:id="status" BorderPane.alignment="CENTER_LEFT" />
+    </bottom>
+    <center>
+        <ScrollPane fitToWidth="true" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+            <VBox BorderPane.alignment="CENTER">
+                <children>
+                    <HBox VBox.vgrow="ALWAYS">
+                        <VBox.margin>
+                            <Insets left="10.0" right="10.0" top="10.0" />
+                        </VBox.margin>
+                        <children>
+                            <TitledPane fx:id="titlePaneIzbiraDestinacije" animated="false" collapsible="false" minHeight="-Infinity" text="Izbira destinacije" HBox.hgrow="ALWAYS">
+                                <content>
+                                    <AnchorPane maxHeight="-Infinity">
+                                        <children>
+                                            <GridPane layoutX="189.0" layoutY="21.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                <columnConstraints>
+                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                </columnConstraints>
+                                                <rowConstraints>
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                </rowConstraints>
+                                                <children>
+                                                    <Label text="Mesto prevzema" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                                                    <Label text="Datum odhoda" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                                                    <Label text="Mesto vrnitve" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                                                    <Label text="Datum vrnitve" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                                                    <DatePicker fx:id="datumPrevzema" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                                                    <DatePicker fx:id="datumVrnitve" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                                                    <TextField fx:id="metoPrevzema" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                                                    <TextField fx:id="mestoVrnitve" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                                                </children>
+                                            </GridPane>
+                                        </children>
+                                    </AnchorPane>
+                                </content>
+                                <HBox.margin>
+                                    <Insets />
+                                </HBox.margin>
+                            </TitledPane>
+                        </children>
+                    </HBox>
+                    <HBox fx:id="Hbox" minHeight="-Infinity" prefHeight="150.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                        <TitledPane animated="false" collapsible="false" layoutX="20.0" layoutY="20.0" text="Izbira avtomobila" HBox.hgrow="ALWAYS">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <padding>
+                                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                    </padding>
+                                    <children>
+                                        <VBox layoutX="239.0" layoutY="-38.0" prefWidth="577.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <children>
+                                                <HBox alignment="CENTER" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                                    <children>
+                                                        <Label text="Velikost:">
+                                                            <padding>
+                                                                <Insets right="5.0" />
+                                                            </padding>
+                                                        </Label>
+                                                        <ComboBox fx:id="velikost" prefWidth="125.0">
+                                                            <items>
+                                                                <FXCollections fx:factory="observableArrayList">
+                                                                    <String fx:id="Majhen" fx:value="Majhen" />
+                                                                    <String fx:id="Srednji" fx:value="Srednji" />
+                                                                    <String fx:id="Velik" fx:value="Velik" />
+                                                                </FXCollections>
+                                                            </items>
+                                                        </ComboBox>
+                                                        <Label text="Menjalnik:">
+                                                            <padding>
+                                                                <Insets left="5.0" right="5.0" />
+                                                            </padding>
+                                                        </Label>
+                                                        <ComboBox fx:id="menjalnik" prefWidth="125.00">
+                                                            <items>
+                                                                <FXCollections fx:factory="observableArrayList">
+                                                                    <String fx:id="Ročni" fx:value="Ročni" />
+                                                                    <String fx:id="Avtomatski" fx:value="Avtomatski" />
+                                                                </FXCollections>
+                                                            </items>
+                                                        </ComboBox>
+                                                        <Label text="Gorivo:">
+                                                            <padding>
+                                                                <Insets left="5.0" right="5.0" />
+                                                            </padding>
+                                                        </Label>
+                                                        <ComboBox fx:id="gorivo" prefWidth="125.00">
+                                                            <items>
+                                                                <FXCollections fx:factory="observableArrayList">
+                                                                    <String fx:id="Bencin" fx:value="Bencin" />
+                                                                    <String fx:id="Dizel" fx:value="Dizel" />
+                                                                    <String fx:id="Elektrika" fx:value="Elektrika" />
+                                                                </FXCollections>
+                                                            </items>
+                                                        </ComboBox>
+                                                        <CheckBox fx:id="zavarovanje" mnemonicParsing="false" text="Zavarovanje">
+                                                            <HBox.margin>
+                                                                <Insets left="10.0" />
+                                                            </HBox.margin></CheckBox>
+                                                    </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                                    <children>
+                                                        <Label text="Izberite avtomobil">
+                                                            <HBox.margin>
+                                                                <Insets left="10.0" right="10.0" />
+                                                            </HBox.margin>
+                                                        </Label>
+                                                        <ChoiceBox fx:id="izbiraAvtomobila" prefWidth="300.0" />
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                            <VBox.margin>
+                                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                            </VBox.margin>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                     </HBox.margin>
+                        </TitledPane>
+                        <VBox.margin>
+                            <Insets top="10.0" />
+                        </VBox.margin>
+                    </HBox>
+               <HBox fx:id="Hbox1" layoutX="10.0" layoutY="138.0" minHeight="-Infinity" prefHeight="70.0" prefWidth="200.0">
+                  <children>
+                     <TitledPane animated="false" collapsible="false" layoutX="20.0" layoutY="20.0" text="Cena" HBox.hgrow="ALWAYS">
+                        <content>
+                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                              <padding>
+                                 <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                              </padding>
+                              <children>
+                                 <HBox layoutX="110.0" layoutY="-36.0" prefHeight="34.4" prefWidth="420.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                       <Label text="Cena na dan:">
+                                          <HBox.margin>
+                                             <Insets left="5.0" right="5.0" />
+                                          </HBox.margin>
+                                       </Label>
+                                       <Label fx:id="cenaNaDan" text="0€" />
+                                       <Label text="Cena skupaj:">
+                                          <HBox.margin>
+                                             <Insets left="5.0" />
+                                          </HBox.margin>
+                                       </Label>
+                                       <Label fx:id="cenaSkupaj" text="0€">
+                                          <HBox.margin>
+                                             <Insets left="5.0" />
+                                          </HBox.margin>
+                                       </Label>
+                                       <CheckBox fx:id="placiloSKartico" mnemonicParsing="false" text="Plačilo s kartico">
+                                          <HBox.margin>
+                                             <Insets left="5.0" />
+                                          </HBox.margin>
+                                       </CheckBox>
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </AnchorPane>
+                        </content>
+                        <VBox.margin>
+                           <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                        </VBox.margin>
+                        <HBox.margin>
+                           <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                        </HBox.margin>
+                     </TitledPane>
+                  </children>
+               </HBox>
+                    <HBox layoutX="10.0" layoutY="285.0" minHeight="200.0" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                        <children>
+                            <TitledPane fx:id="titlePanePlacilo" animated="false" collapsible="false" text="Podatki za plačilo" HBox.hgrow="ALWAYS">
+                                <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                        <children>
+                                            <GridPane layoutX="10.0" layoutY="9.0" prefHeight="173.6" prefWidth="576.0" AnchorPane.bottomAnchor="10.199999999999989" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="9.200000000000045" AnchorPane.topAnchor="9.0">
+                                                <columnConstraints>
+                                                    <ColumnConstraints hgrow="ALWAYS" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
+                                                    <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                                                    <ColumnConstraints hgrow="ALWAYS" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
+                                                    <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                                                </columnConstraints>
+                                                <rowConstraints>
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                </rowConstraints>
+                                                <children>
+                                                    <Label text="Ime" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                                    <Label text="Priimek" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                                    <Label text="Ulica" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                                    <Label text="Hišna številka" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                                    <TextField fx:id="imePlacnika" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                                    <TextField fx:id="ulica" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                                    <TextField fx:id="priimekPlacnika" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                                    <TextField fx:id="hisnaSt" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                                    <Label text="Mesto" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                                    <Label text="Poštna št" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                                    <Label text="E-mail" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                                                    <Label text="Telefonska številka" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                                                    <TextField fx:id="mestoPlacnika" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                                    <TextField fx:id="postnaSt" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                                    <TextField fx:id="email" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                                                    <Label text="Starost" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                                                    <Label text="Številka vozniške" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                                                    <Label text="CCV" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+                                                    <PasswordField fx:id="ccv" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+                                                    <TextField fx:id="starost" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                                                    <TextField fx:id="stevilkaVozniske" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                                                    <Label text="Številka kartice" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+                                                    <TextField fx:id="telefonska" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                                       <PasswordField fx:id="stevilkaKartice" maxWidth="300.0" minWidth="70.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                </children>
+                                            </GridPane>
+                                        </children>
+                                    </AnchorPane>
+                                </content>
+                                <HBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                </HBox.margin>
+                            </TitledPane>
+                        </children>
+                        <VBox.margin>
+                            <Insets top="10.0" />
+                        </VBox.margin>
+                    </HBox>
+                    <HBox alignment="CENTER" layoutX="10.0" layoutY="548.0" VBox.vgrow="ALWAYS">
+                        <children>
+                            <Button fx:id="shraniButton" minWidth="105.0" mnemonicParsing="false" onAction="#onSave" prefWidth="105.0" style="-fx-border-color: lightgreen; -fx-border-radius: 3px;" text="Shrani vnos">
+                                <HBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="5.0" top="10.0" />
+                                </HBox.margin></Button>
+                            <Button fx:id="ponastaviVnose" minWidth="105.0" mnemonicParsing="false" onAction="#onPonastavi" prefWidth="105.0" style="-fx-border-color: #ff5252; -fx-border-radius: 3px;" text="Ponastavi vnose" HBox.hgrow="ALWAYS">
+                                <HBox.margin>
+                                    <Insets bottom="10.0" left="5.0" right="10.0" top="10.0" />
+                                </HBox.margin></Button>
+                        </children>
+                    </HBox>
+                </children>
+            </VBox>
+        </ScrollPane>
+    </center>
+    <top>
+        <MenuBar minHeight="-Infinity" minWidth="-Infinity" BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="_Datoteka">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Odpri">
+                            <accelerator>
+                                <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                            </accelerator></MenuItem>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="_Uredi">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Ponastavi vnose" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="_Pomoč">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="O programu" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+</BorderPane>
