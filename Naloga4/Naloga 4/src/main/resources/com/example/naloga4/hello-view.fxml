@@ -37,13 +37,41 @@
                                                 </rowConstraints>
                                                 <children>
                                                     <Label text="Mesto prevzema" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-                                                    <Label text="Datum odhoda" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                                                    <Label text="Datum prevzema" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
                                                     <Label text="Mesto vrnitve" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
                                                     <Label text="Datum vrnitve" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-                                                    <DatePicker fx:id="datumPrevzema" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-                                                    <DatePicker fx:id="datumVrnitve" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-                                                    <TextField fx:id="metoPrevzema" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-                                                    <TextField fx:id="mestoVrnitve" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                                                    <DatePicker fx:id="datumPrevzema" maxWidth="300.0" minWidth="70.0" onAction="#izracunajStDni" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                                                    <DatePicker fx:id="datumVrnitve" maxWidth="300.0" minWidth="70.0" onAction="#izracunajStDni" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                                                    <ComboBox fx:id="metoPrevzema" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                                                        <items>
+                                                            <FXCollections fx:factory="observableArrayList">
+                                                                <String fx:id="Ljubljana2" fx:value="Ljubljana" />
+                                                                <String fx:id="Maribor2" fx:value="Maribor" />
+                                                                <String fx:id="Celje2" fx:value="Celje" />
+                                                                <String fx:id="Kranj2" fx:value="Kranj" />
+                                                                <String fx:id="Koper2" fx:value="Koper" />
+                                                                <String fx:id="Ptuj2" fx:value="Ptuj" />
+                                                                <String fx:id="NovoMesto2" fx:value="Novo mesto" />
+                                                                <String fx:id="Velenje2" fx:value="Velenje" />
+                                                                <String fx:id="KranjskaGora2" fx:value="Kranjska Gora" />
+                                                            </FXCollections>
+                                                        </items>
+                                                    </ComboBox>
+                                                    <ComboBox fx:id="mestoVrnitve" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                                                        <items>
+                                                            <FXCollections fx:factory="observableArrayList">
+                                                                <String fx:id="Ljubljana" fx:value="Ljubljana" />
+                                                                <String fx:id="Maribor" fx:value="Maribor" />
+                                                                <String fx:id="Celje" fx:value="Celje" />
+                                                                <String fx:id="Kranj" fx:value="Kranj" />
+                                                                <String fx:id="Koper" fx:value="Koper" />
+                                                                <String fx:id="Ptuj" fx:value="Ptuj" />
+                                                                <String fx:id="NovoMesto" fx:value="Novo mesto" />
+                                                                <String fx:id="Velenje" fx:value="Velenje" />
+                                                                <String fx:id="KranjskaGora" fx:value="Kranjska Gora" />
+                                                            </FXCollections>
+                                                        </items>
+                                                    </ComboBox>
                                                 </children>
                                             </GridPane>
                                         </children>
@@ -72,12 +100,12 @@
                                                                 <Insets right="5.0" />
                                                             </padding>
                                                         </Label>
-                                                        <ComboBox fx:id="velikost" prefWidth="125.0">
+                                                        <ComboBox fx:id="velikost" onAction="#sprememba" prefWidth="125.0">
                                                             <items>
                                                                 <FXCollections fx:factory="observableArrayList">
-                                                                    <String fx:id="Majhen" fx:value="Majhen" />
-                                                                    <String fx:id="Srednji" fx:value="Srednji" />
-                                                                    <String fx:id="Velik" fx:value="Velik" />
+                                                                    <String fx:id="Mala" fx:value="Mala" />
+                                                                    <String fx:id="Srednja" fx:value="Srednja" />
+                                                                    <String fx:id="Velika" fx:value="Velika" />
                                                                 </FXCollections>
                                                             </items>
                                                         </ComboBox>
@@ -86,7 +114,7 @@
                                                                 <Insets left="5.0" right="5.0" />
                                                             </padding>
                                                         </Label>
-                                                        <ComboBox fx:id="menjalnik" prefWidth="125.00">
+                                                        <ComboBox fx:id="menjalnik" onAction="#sprememba" prefWidth="125.00">
                                                             <items>
                                                                 <FXCollections fx:factory="observableArrayList">
                                                                     <String fx:id="Ročni" fx:value="Ročni" />
@@ -99,7 +127,7 @@
                                                                 <Insets left="5.0" right="5.0" />
                                                             </padding>
                                                         </Label>
-                                                        <ComboBox fx:id="gorivo" prefWidth="125.00">
+                                                        <ComboBox fx:id="gorivo" onAction="#sprememba" prefWidth="125.00">
                                                             <items>
                                                                 <FXCollections fx:factory="observableArrayList">
                                                                     <String fx:id="Bencin" fx:value="Bencin" />
@@ -108,7 +136,7 @@
                                                                 </FXCollections>
                                                             </items>
                                                         </ComboBox>
-                                                        <CheckBox fx:id="zavarovanje" mnemonicParsing="false" text="Zavarovanje">
+                                                        <CheckBox fx:id="zavarovanje" mnemonicParsing="false" onMouseClicked="#toggleZavarovanje" text="Zavarovanje">
                                                             <HBox.margin>
                                                                 <Insets left="10.0" />
                                                             </HBox.margin></CheckBox>
@@ -121,7 +149,12 @@
                                                                 <Insets left="10.0" right="10.0" />
                                                             </HBox.margin>
                                                         </Label>
-                                                        <ChoiceBox fx:id="izbiraAvtomobila" prefWidth="300.0" />
+                                                        <ComboBox fx:id="izbiraAvtomobila" onAction="#onSelect" prefWidth="300.0">
+                                                            <items>
+                                                                <FXCollections fx:factory="observableArrayList">
+                                                                </FXCollections>
+                                                            </items>
+                                                        </ComboBox>
                                                     </children>
                                                 </HBox>
                                             </children>
@@ -167,7 +200,7 @@
                                              <Insets left="5.0" />
                                           </HBox.margin>
                                        </Label>
-                                       <CheckBox fx:id="placiloSKartico" mnemonicParsing="false" text="Plačilo s kartico">
+                                       <CheckBox fx:id="placiloSKartico" mnemonicParsing="false" onMouseClicked="#toggleKartica" text="Plačilo s kartico">
                                           <HBox.margin>
                                              <Insets left="5.0" />
                                           </HBox.margin>
@@ -186,13 +219,13 @@
                      </TitledPane>
                   </children>
                </HBox>
-                    <HBox layoutX="10.0" layoutY="285.0" minHeight="200.0" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                    <HBox layoutX="10.0" layoutY="285.0" minHeight="200.0" prefHeight="250.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                         <children>
                             <TitledPane fx:id="titlePanePlacilo" animated="false" collapsible="false" text="Podatki za plačilo" HBox.hgrow="ALWAYS">
                                 <content>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="250.0" prefWidth="200.0">
                                         <children>
-                                            <GridPane layoutX="10.0" layoutY="9.0" prefHeight="173.6" prefWidth="576.0" AnchorPane.bottomAnchor="10.199999999999989" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="9.200000000000045" AnchorPane.topAnchor="9.0">
+                                            <GridPane layoutX="10.0" layoutY="9.0" prefHeight="220.0" prefWidth="576.0" AnchorPane.bottomAnchor="10.199999999999989" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="9.200000000000045" AnchorPane.topAnchor="9.0">
                                                 <columnConstraints>
                                                     <ColumnConstraints hgrow="ALWAYS" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
                                                     <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
@@ -213,25 +246,55 @@
                                                     <Label text="Ulica" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                                                     <Label text="Hišna številka" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                                                     <TextField fx:id="imePlacnika" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                                                    <TextField fx:id="ulica" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                                    <TextField fx:id="ulica" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                          <GridPane.margin>
+                                             <Insets />
+                                          </GridPane.margin></TextField>
                                                     <TextField fx:id="priimekPlacnika" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                                                    <TextField fx:id="hisnaSt" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                                    <TextField fx:id="hisnaSt" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                          <GridPane.margin>
+                                             <Insets />
+                                          </GridPane.margin></TextField>
                                                     <Label text="Mesto" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                                                     <Label text="Poštna št" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                                                     <Label text="E-mail" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                                                     <Label text="Telefonska številka" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                                                    <TextField fx:id="mestoPlacnika" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                                                    <TextField fx:id="postnaSt" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                                                    <TextField fx:id="email" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                                                    <TextField fx:id="mestoPlacnika" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                          <GridPane.margin>
+                                             <Insets top="5.0" />
+                                          </GridPane.margin></TextField>
+                                                    <TextField fx:id="postnaSt" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                          <GridPane.margin>
+                                             <Insets top="5.0" />
+                                          </GridPane.margin></TextField>
+                                                    <TextField fx:id="email" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                          <GridPane.margin>
+                                             <Insets top="5.0" />
+                                          </GridPane.margin></TextField>
                                                     <Label text="Starost" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
                                                     <Label text="Številka vozniške" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
                                                     <Label text="CCV" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-                                                    <PasswordField fx:id="ccv" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-                                                    <TextField fx:id="starost" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-                                                    <TextField fx:id="stevilkaVozniske" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                                                    <PasswordField fx:id="ccv" editable="false" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                                          <GridPane.margin>
+                                             <Insets top="5.0" />
+                                          </GridPane.margin></PasswordField>
+                                                    <TextField fx:id="starost" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                                          <GridPane.margin>
+                                             <Insets top="5.0" />
+                                          </GridPane.margin></TextField>
+                                                    <TextField fx:id="stevilkaVozniske" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                                          <GridPane.margin>
+                                             <Insets top="5.0" />
+                                          </GridPane.margin></TextField>
                                                     <Label text="Številka kartice" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-                                                    <TextField fx:id="telefonska" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                                       <PasswordField fx:id="stevilkaKartice" maxWidth="300.0" minWidth="70.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                    <TextField fx:id="telefonska" maxWidth="300.0" minWidth="70.0" style="-fx-border-color: lightgrey; -fx-border-radius: 3px ;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                          <GridPane.margin>
+                                             <Insets top="5.0" />
+                                          </GridPane.margin></TextField>
+                                       <PasswordField fx:id="stevilkaKartice" editable="false" maxWidth="300.0" minWidth="70.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                                          <GridPane.margin>
+                                             <Insets top="5.0" />
+                                          </GridPane.margin></PasswordField>
                                                 </children>
                                             </GridPane>
                                         </children>
@@ -267,7 +330,7 @@
             <menus>
                 <Menu mnemonicParsing="false" text="_Datoteka">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Odpri">
+                        <MenuItem mnemonicParsing="false" onAction="#odpri" text="Odpri">
                             <accelerator>
                                 <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                             </accelerator></MenuItem>
@@ -280,7 +343,7 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="_Pomoč">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="O programu" />
+                        <MenuItem mnemonicParsing="false" onAction="#openWebpage" text="O programu" />
                     </items>
                 </Menu>
             </menus>
